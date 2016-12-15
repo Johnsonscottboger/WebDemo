@@ -14,9 +14,19 @@ namespace Web.Demo.Controllers
     public class UserController : Controller
     {
         private IRepository<User> _userRepo;
-        public UserController(IRepository<User> userRepo)
+        private IRepository<Role> _roleRepo;
+        private IRepository<User_Role> _userRoleRepo;
+
+
+        public UserController(
+            IRepository<User> userRepo,
+            IRepository<Role> roleRepo,
+            IRepository<User_Role> userRoleRepo)
         {
             this._userRepo = userRepo;
+            this._roleRepo = roleRepo;
+            this._userRoleRepo = userRoleRepo;
+            
         }
 
         // GET: /<controller>/
@@ -42,10 +52,12 @@ namespace Web.Demo.Controllers
             };
 
 
-            _userRepo.Add(user);
+            //_userRepo.Add(user);
 
             var userAdded = _userRepo.Find(p => p.Name == user.Name);
-
+            var roleAdded = _roleRepo.Find(p => p.RoleName == role.RoleName);
+            var user_Roles = _userRoleRepo.FindAll(p => p.UserId == userAdded.UserId);
+            
             return View();
         }
     }
