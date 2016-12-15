@@ -1,0 +1,17 @@
+{
+  "version": "1.0.0-*",
+
+  "dependencies": {
+    "Microsoft.AspNetCore.Razor": "1.1.0",
+    "Microsoft.AspNetCore.Razor.Runtime": "1.1.0",
+    "Microsoft.EntityFrameworkCore.Relational": "1.1.0",
+    "NETStandard.Library": "1.6.1",
+    "System.Linq.Parallel": "4.0.1"
+  },
+
+  "frameworks": {
+    "netstandard1.6": {
+      "imports": "dnxcore50"
+    }
+  }
+}

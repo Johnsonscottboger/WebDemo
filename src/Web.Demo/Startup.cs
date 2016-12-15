@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Web.Data.ServiceExtension;
+using Web.Data.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace Web.Demo
 {
@@ -28,6 +31,9 @@ namespace Web.Demo
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
+            services.AddDbContext<MyContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("SqlServerConnection")));
+            services.AddRepository();
             services.AddMvc();
         }
 
